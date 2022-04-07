@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name=""viewport"
+        content="width=device-width,initial-scale=1.0">
+        <title> Quote generator</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="quote-box">
+          <p id="quote">"quote goes here..."</p>
+          <small id="author">Author</small>
+        </div>
+        <button id="btn">New quote</button>
+    </div>
+    <script>
+        const quote = document.querySelector("#quote");
+        const author = document.querySelector("#author");
+        const btn = document.querySelector("#btn");
+        btn.addEventListener("click", getQuote)
+
+        function getQuote()
+        {
+            fetch("http://api.quotable.io/random")
+            .then(res => res.json())
+            .then(data => {
+                quote.innerHTML= data.content;
+                author.innerHTML= data.author;
+            });
+        }
+    </script>
+
+    </body>
+</html>
